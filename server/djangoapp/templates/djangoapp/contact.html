@@ -15,7 +15,11 @@
 
     <body>
         <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-            <a class="navbar-brand text-info p-3 ml-3" href="#">Exotic Motors</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <a class="navbar-brand text-info p-3 ml-3" href="{% url 'djangoapp:index' %}">Exotic Motors</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -28,6 +32,30 @@
                         <a class="nav-link active" href="#">Contact Us</a>
                     </li>
                 </ul>
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    <div class="">
+                        <div class="dropdown">
+                            <li>
+                                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                                
+                            </li>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="rightalign">
+                        <div class="dropdown">
+                            <form action="{% url 'djangoapp:registration' %}" method="get">
+                                <div class="dropdown-content">
+                                    <a href="{% url 'djangoapp:registration' %}">Signup</a>
+                                    <a href="{% url 'djangoapp:login' %}">Login</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </nav>
         <div class="container text-center">
