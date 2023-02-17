@@ -30,6 +30,31 @@
                     <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
                 </li>
             </ul>
+
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                <div class="">
+                    <div class="dropdown">
+                        <li>
+                            <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                            
+                        </li>
+                    </div>
+                </div>
+            {% else %}
+                <div class="rightalign">
+                    <div class="dropdown">
+                        <form action="{% url 'djangoapp:registration' %}" method="get">
+                            <div class="dropdown-content">
+                                <a href="{% url 'djangoapp:registration' %}">Signup</a>
+                                <a href="{% url 'djangoapp:login' %}">Login</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </nav>
     <div class="text-center">
