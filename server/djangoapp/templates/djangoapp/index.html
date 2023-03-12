@@ -43,7 +43,6 @@
                         <li>
                             <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                             <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
-                            
                         </li>
                     </div>
                 </div>
@@ -101,5 +100,9 @@
        
     </div>
     </body>
-
+    <script>
+        $(function() {
+          $('#table').bootstrapTable()
+        })
+      </script>
 </html>
