@@ -101,34 +101,16 @@ def get_dealer_reviews_from_cf(url, **kwargs):
 
     return results
 def get_dealer_by_id_from_cf(url, id):
-    results = []
-
-    # Call get_request with a URL parameter
     json_result = get_request(url, id=id)
-
+    print(json_result)
     if json_result:
-        # Get the row list in JSON as dealers
         dealers = json_result
-        print(dealers,"7")
-
-        # For each dealer object
-        for dealer in dealers:
-            # Get its content in `doc` object
-            dealer_doc = dealer
-            if dealer_doc["id"] == id:
-                # Create a CarDealer object with values in `doc` object
-                dealer_obj = CarDealer(address=dealer_doc["address"], 
-                                       city=dealer_doc["city"], 
-                                       full_name=dealer_doc["full_name"],
-                                       id=dealer_doc["id"], 
-                                       lat=dealer_doc["lat"], 
-                                       long=dealer_doc["long"],
-                                       short_name=dealer_doc["short_name"],
-                                       st=dealer_doc["st"], 
-                                       zip=dealer_doc["zip"])                    
-                results.append(dealer_obj)
-
-    return results[0]
+        dealer_doc = dealers[0]
+        dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"],
+                                id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],  short_name=dealer_doc["short_name"],full_name=dealer_doc["full_name"],
+                                
+                                st=dealer_doc["st"], zip=dealer_doc["zip"])
+    return dealer_obj
 
 def get_request(url, **kwargs):
     
