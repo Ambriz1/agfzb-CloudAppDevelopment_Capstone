@@ -118,6 +118,10 @@ def get_dealer_details(request, id):
 # def add_review(request, dealer_id):
 # ...
 
+
+          
+            
+
 def add_review(request, id):
     context = {}
     dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/4cb64624-a160-4b3f-8a92-67feb2e79a2c/dealership-package/get-dealership"
@@ -125,7 +129,7 @@ def add_review(request, id):
     context["dealer"] = dealer
     if request.method == 'GET':
         # Get cars for the dealer
-        cars = CarModel.objects.all()
+        cars = CarModel.objects.filter(id=id)
         print(cars)
         context["cars"] = cars
         
@@ -147,9 +151,11 @@ def add_review(request, id):
                 if request.POST["purchasecheck"] == 'on':
                     payload["purchase"] = True
             payload["purchase_date"] = request.POST["purchasedate"]
-            payload["car_make"] = car.car_make
-            payload["car_model"] = car.name_model
-            
+            # payload["car_make"] = car.make.name
+            # payload["car_model"] = car.name
+            payload["car_make"] = str(car.car_make)
+            payload["car_model"] = car.car_model
+            payload["car_year"] = int(car.year.strftime("%Y"))
 
             new_payload = {}
             new_payload["review"] = payload
