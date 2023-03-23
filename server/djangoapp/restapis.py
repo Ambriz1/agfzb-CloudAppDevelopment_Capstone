@@ -153,7 +153,7 @@ def analyze_review_sentiments(text):
     authenticator = IAMAuthenticator(api_key)
     natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator)
     natural_language_understanding.set_service_url(url)
-    response = natural_language_understanding.analyze( text=text+"chito chido",features=Features(sentiment=SentimentOptions(targets=[text+"chito chido"]))).get_result()
+    response = natural_language_understanding.analyze( text=text, language='en', features=Features(sentiment=SentimentOptions(targets=[text]))).get_result()
     label=json.dumps(response, indent=2)
     label = response['sentiment']['document']['label']
 

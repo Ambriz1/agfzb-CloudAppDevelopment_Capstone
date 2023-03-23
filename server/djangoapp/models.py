@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
+from django.core import serializers
+import json
 
 
 # Create your models here.
@@ -33,6 +35,10 @@ class CarModel(models.Model):
         ('Other', 'Other')
     ]
     car_type = models.CharField(max_length=20, choices=TYPE, default="choose a type")
+    
+    def __str__(self):
+        return self.car_model
+
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
 # - Name
 # - Dealer id, used to refer a dealer created in cloudant database

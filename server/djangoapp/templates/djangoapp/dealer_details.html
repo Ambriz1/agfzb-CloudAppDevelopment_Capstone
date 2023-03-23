@@ -63,8 +63,42 @@
             {% endfor %}
         {% endif %}
     
-        <h3>Reviews for <b>{{dealer.full_name}}</b></h3>
-    
+        <div class="container" style="width : 80%; margin-top : 3%;">
+            <div>
+                Will style later testing for functionality
+            </div>
+            <h1 style="color:white" ><b>{{dealer.full_name}}</b></h1>
+            <h3>Reviews for <b>{{dealer.full_name}}</b></h3>
+            
+            <table id="table" class="table table-dark table-striped">
+                <tbody>
+                    <tr>
+                        <th>Dealer ID</th>
+                        <td>{{dealer.id}}</th>
+                    </tr>
+                  <tr>
+                    <th>Address</th>
+                    <td>{{dealer.address}}</td>
+                  </tr>
+                  <tr>
+                    <th>City</th>
+                    <td>{{dealer.city}}</td>
+                  </tr>
+                  <tr>
+                    <th>Zip Code</th>
+                    <td>{{dealer.zip}}</td>
+                  </tr>
+                  <tr>
+                    <th>State</th>
+                    <td>{{dealer.st}}</td>
+                  </tr>
+                  <tr>
+                    <th>Location</th>
+                    <td>Latitude : {{dealer.lat}}, Longitude : {{dealer.long}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div>
         <div class="container">
             <div class="card-columns">
                 {% for review in reviews %}
@@ -81,10 +115,10 @@
                                        alt="Sentiment">
                         {% endif %}
                         <div class="card-body bg-light">
-                                  {% if review.car_make%}
+                                    {% if review.car_make%}
                                       <h5 class="card-title">{{review.car_make}}, {{review.car_model}} </h5>
                                       <h5 class="card-title">{{review.car_year}}</h5>
-                                   {% endif %}
+                                    {% endif %}
                                   <p class="card-text">{{review.review}}</p>
                         </div>
                     </div>
